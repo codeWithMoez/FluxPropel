@@ -478,181 +478,173 @@
   line-height: 1.6;
 }
 
-/* === FINAL MOBILE RESPONSIVE FIX (All Sections) === */
 
-/* Tablets and smaller devices (max-width: 992px) */
+
+/* === FINAL & COMPLETE RESPONSIVE FIX FOR ALL PHONES === */
+
 @media (max-width: 992px) {
+  /* --- General Resets for Mobile --- */
+  .fp-section-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+  .fp-section-subtitle {
+    font-size: 1.1rem;
+  }
+  .fp-services, .fp-process, .fp-results, .fp-testimonials, .fp-contact, .fp-cta-section {
+    padding: 4rem 5%;
+  }
+
+  /* --- Navigation Bar --- */
   .fp-nav-menu {
-    display: none;
+    display: none; /* Hide desktop menu */
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: white;
+    background-color: white;
     flex-direction: column;
+    width: 100%;
     padding: 1rem 0;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 15px 15px;
-    gap: 0;
-    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
   }
   .fp-nav-menu.active {
-    display: flex;
+    display: flex; /* Show when hamburger is clicked */
   }
   .fp-nav-menu li {
     width: 100%;
+    text-align: center;
   }
   .fp-nav-link {
     display: block;
-    padding: 1rem 2rem;
-    width: 100%;
+    padding: 1.25rem 2rem;
+    font-size: 1.2rem; /* Larger, tappable font */
   }
-  .fp-nav-link::after {
-    display: none; /* Hide underline on mobile menu */
-  }
-
   .fp-mobile-toggle {
-    display: flex;
+    display: flex; /* Show hamburger icon */
+    transform: scale(1.2);
+  }
+  .fp-cta-nav {
+    display: none; /* Hide the CTA button in the nav on mobile */
   }
 
-  .fp-hero-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 3rem;
+  /* --- Hero Section --- */
+  .fp-hero {
+    padding-top: 120px;
   }
-  .fp-hero-cta {
-    justify-content: center;
+  .fp-hero-content {
+    grid-template-columns: 1fr; /* Stack content vertically */
+    text-align: center;
   }
   .fp-hero-text h1 {
     font-size: 3rem;
   }
-  
+  .fp-hero-text p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .fp-hero-cta {
+    justify-content: center;
+  }
+  .fp-btn-primary, .fp-btn-secondary {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: 350px;
+    justify-content: center;
+  }
+  .fp-dashboard-mockup {
+    transform: none; /* Disable 3D tilt on mobile */
+    max-width: 450px;
+    margin: 0 auto;
+  }
+
+  /* --- Stats Section --- */
+  .fp-stats-container {
+    grid-template-columns: 1fr 1fr; /* 2x2 grid */
+    gap: 1rem;
+    padding: 2rem;
+  }
+  .fp-stat-number {
+    font-size: 2.5rem;
+  }
+
+  /* --- Services, Results, Testimonials --- */
+  .fp-services-grid,
+  .fp-results-grid,
+  .fp-testimonials-grid {
+    grid-template-columns: 1fr; /* Stack cards vertically */
+    gap: 2rem;
+  }
+
+  /* --- Process Section (Timeline) --- */
   .fp-process-timeline::before {
-    left: 35px;
-    transform: translateX(0);
+    left: 35px; /* Move line to the left */
+    transform: none;
   }
   .fp-process-step {
-    display: flex;
-    align-items: flex-start; /* Align to top */
+    display: flex; /* Use flexbox for robust alignment */
+    align-items: flex-start;
     padding: 1.5rem 0;
     float: none;
     clear: both;
   }
   .fp-process-number {
-    position: static;
+    position: static; /* Remove absolute positioning */
     transform: none;
-    flex-shrink: 0;
-    width: 60px;
-    height: 60px;
-    font-size: 1.4rem;
-    margin-right: 25px;
+    flex-shrink: 0; /* Prevent circle from shrinking */
+    width: 65px;
+    height: 65px;
+    font-size: 1.5rem;
+    margin-right: 25px; /* Create space */
   }
   .fp-process-step:nth-child(odd) .fp-process-content,
   .fp-process-step:nth-child(even) .fp-process-content {
-    float: none;
+    float: none; /* Disable float */
     width: auto;
-    flex-grow: 1; /* Allow content to take remaining space */
+    flex-grow: 1; /* Take up remaining space */
     text-align: left !important;
-    padding: 1rem;
-  }
-}
-
-/* Mobile phones (max-width: 600px) */
-@media (max-width: 600px) {
-  .fp-nav {
-    padding: 1rem 4%;
-  }
-  .fp-cta-nav {
-    display: none; /* Hide main CTA button on small screens */
   }
 
-  .fp-hero-text h1 {
-    font-size: 2.5rem;
-  }
-  .fp-hero-text p {
-    font-size: 1.1rem;
-  }
-
-  .fp-stats-container {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 1.5rem;
-  }
-
-  .fp-section-title {
-    font-size: 2rem;
-  }
-
-  .fp-services-grid,
-  .fp-results-grid,
-  .fp-testimonials-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .fp-process-step {
-    padding: 1rem 0;
-  }
-  .fp-process-number {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
-    margin-right: 20px;
-  }
-  .fp-process-timeline::before {
-    left: 25px;
-  }
-  .fp-process-content {
-    padding: 0.5rem 0 0.5rem 0.5rem;
-  }
-  
+  /* --- Contact Section & Iframe --- */
   .fp-contact-title {
-    font-size: 2.2rem;
+    font-size: 2.8rem;
   }
   .fp-calendar-container {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+  .fp-calendar-iframe {
+    min-height: 650px; /* Make iframe taller for easier use */
   }
 
+  /* --- Footer Section --- */
   .fp-footer-content {
     grid-template-columns: 1fr;
     text-align: center;
   }
-}
-
-/* === MOBILE PROCESS SECTION FIX === */
-@media (max-width: 768px) {
-  .fp-process-timeline::before {
-    left: 35px; /* Move timeline to the left */
-    transform: translateX(0);
-  }
-
-  .fp-process-step {
-    /* Remove float-based properties */
-    display: flex;
-    align-items: center;
-    padding: 1.5rem 0;
-  }
-  
-  .fp-process-step:nth-child(odd) .fp-process-content,
-  .fp-process-step:nth-child(even) .fp-process-content {
-    float: none; /* Disable float on mobile */
-    width: 100%;
-    text-align: left !important;
-  }
-
-  .fp-process-number {
-    /* Make the number static, not absolute */
-    position: static;
-    transform: none;
-    flex-shrink: 0; /* Prevent the circle from shrinking */
-    width: 60px;
-    height: 60px;
-    font-size: 1.4rem;
-    margin-right: 20px; /* Create space between number and content */
-  }
-
-  .fp-process-content {
-    padding: 1.5rem;
+  .fp-footer-section {
+    margin-bottom: 1.5rem;
   }
 }
+
+/* Specific overrides for very small phones */
+@media (max-width: 400px) {
+  .fp-stats-container {
+    grid-template-columns: 1fr; /* Stack stats on very small screens */
+  }
+  .fp-hero-text h1 {
+    font-size: 2.5rem;
+  }
+  .fp-section-title {
+    font-size: 2rem;
+  }
+}
+
+
 
   /* Portfolio/Results Section */
   .fp-results {
