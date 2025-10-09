@@ -1,0 +1,2046 @@
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .fluxpropel-website {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+  }
+
+  /* Header & Navigation */
+  .fp-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .fp-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .fp-logo {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    z-index: 1001;
+  }
+
+  .fp-nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .fp-nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+
+  .fp-nav-link:hover {
+    color: #667eea;
+  }
+
+  .fp-nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    transition: width 0.3s ease;
+  }
+
+  .fp-nav-link:hover::after {
+    width: 100%;
+  }
+
+  .fp-cta-nav {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    white-space: nowrap;
+  }
+
+  .fp-cta-nav:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  }
+
+  /* Mobile Menu */
+  .fp-mobile-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+  }
+
+  .fp-mobile-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    margin: 3px 0;
+    transition: 0.3s;
+  }
+
+  /* Hero Section */
+  .fp-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+  }
+
+  .fp-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+    background-size: cover;
+  }
+
+  .fp-hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 2rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .fp-hero-text h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .fp-hero-text .highlight {
+    background: linear-gradient(45deg, #ff6b6b, #feca57);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .fp-hero-text p {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .fp-hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .fp-btn-primary {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 18px 36px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .fp-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255, 107, 107, 0.5);
+  }
+
+  .fp-btn-secondary {
+    background: transparent;
+    color: white;
+    padding: 18px 36px;
+    border: 2px solid white;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .fp-btn-secondary:hover {
+    background: white;
+    color: #667eea;
+  }
+
+  .fp-hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .fp-dashboard-mockup {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+    transform: perspective(1000px) rotateY(-15deg) rotateX(10deg);
+    transition: transform 0.3s ease;
+  }
+
+  .fp-dashboard-mockup:hover {
+    transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
+  }
+
+  /* Stats Section */
+  .fp-stats {
+    background: white;
+    padding: 5rem 5% 3rem;
+    margin-top: -100px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .fp-stats-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .fp-stat-item {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .fp-stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+  }
+
+  .fp-stat-label {
+    color: #666;
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+
+  /* Services Section */
+  .fp-services {
+    padding: 8rem 5% 6rem;
+    background: #f8fafc;
+  }
+
+  .fp-section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+  }
+
+  .fp-section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .fp-section-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .fp-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .fp-service-card {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fp-service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+  }
+
+  .fp-service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  }
+
+  .fp-service-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-size: 2rem;
+  }
+
+  .fp-service-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .fp-service-description {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .fp-service-features {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+
+  .fp-service-features li {
+    padding: 0.5rem 0;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .fp-service-features li::before {
+    content: '✓';
+    color: #48bb78;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+/* Process Section - FINAL MOBILE & DESKTOP FIX */
+.fp-process {
+  padding: 6rem 5%;
+  background: white;
+  overflow: hidden; /* Contains floats */
+}
+
+.fp-process-timeline {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.fp-process-timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #eef2f7;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.fp-process-step {
+  padding: 2.5rem 0;
+  position: relative;
+  z-index: 2;
+  clear: both; /* Ensures steps don't interfere */
+}
+
+.fp-process-content {
+  position: relative;
+  width: calc(50% - 65px); /* 50% minus margin */
+  padding: 2rem 2.5rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(82, 85, 90, 0.1);
+  min-height: 80px;
+}
+
+.fp-process-step:nth-child(odd) .fp-process-content {
+  float: left;
+  text-align: right;
+}
+
+.fp-process-step:nth-child(even) .fp-process-content {
+  float: right;
+  text-align: left;
+}
+
+/* Clear floats */
+.fp-process-step::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.fp-process-number {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 1.8rem;
+  z-index: 10;
+  border: 5px solid white;
+  box-shadow: 0 0 0 3px #667eea, 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.fp-process-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 1rem;
+}
+
+.fp-process-description {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* === MOBILE PROCESS SECTION FIX === */
+@media (max-width: 768px) {
+  .fp-process-timeline::before {
+    left: 35px; /* Move timeline to the left */
+    transform: translateX(0);
+  }
+
+  .fp-process-step {
+    /* Remove float-based properties */
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 0;
+  }
+  
+  .fp-process-step:nth-child(odd) .fp-process-content,
+  .fp-process-step:nth-child(even) .fp-process-content {
+    float: none; /* Disable float on mobile */
+    width: 100%;
+    text-align: left !important;
+  }
+
+  .fp-process-number {
+    /* Make the number static, not absolute */
+    position: static;
+    transform: none;
+    flex-shrink: 0; /* Prevent the circle from shrinking */
+    width: 60px;
+    height: 60px;
+    font-size: 1.4rem;
+    margin-right: 20px; /* Create space between number and content */
+  }
+
+  .fp-process-content {
+    padding: 1.5rem;
+  }
+}
+
+  /* Portfolio/Results Section */
+  .fp-results {
+    padding: 8rem 5%;
+    background: #f8fafc;
+  }
+
+  .fp-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .fp-result-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .fp-result-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .fp-result-metric {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  .fp-result-label {
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .fp-result-description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* Testimonials */
+  .fp-testimonials {
+    padding: 8rem 5%;
+    background: white;
+  }
+
+  .fp-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .fp-testimonial {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 15px;
+    position: relative;
+  }
+
+  .fp-testimonial::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 4rem;
+    color: #667eea;
+    font-family: serif;
+  }
+
+  .fp-testimonial-text {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .fp-testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .fp-author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+  }
+
+  .fp-author-info h4 {
+    font-weight: 600;
+    color: #1a202c;
+  }
+
+  .fp-author-info p {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  /* Contact/Calendar Section */
+  .fp-contact {
+    padding: 8rem 5%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fp-contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+    background-size: cover;
+  }
+
+  .fp-contact-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .fp-contact-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    color: white;
+  }
+
+  .fp-contact-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #ff6b6b, #feca57);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .fp-contact-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .fp-calendar-container {
+    background: white;
+    border-radius: 25px;
+    padding: 3rem;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .fp-calendar-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .fp-calendar-header h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+  }
+
+  .fp-calendar-header p {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+
+  .fp-calendar-iframe-wrapper {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: white;
+    min-height: 600px;
+    position: relative;
+  }
+
+  .fp-calendar-iframe {
+    width: 100%;
+    min-height: 600px;
+    border: none;
+    border-radius: 15px;
+  }
+
+  .fp-trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .fp-trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .fp-trust-icon {
+    width: 20px;
+    height: 20px;
+    color: #48bb78;
+  }
+
+  /* CTA Section */
+  .fp-cta-section {
+    background: #1a202c;
+    padding: 6rem 5%;
+    text-align: center;
+    color: white;
+  }
+
+  .fp-cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .fp-cta-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .fp-cta-description {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .fp-cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Footer */
+  .fp-footer {
+    background: #0f1419;
+    color: white;
+    padding: 4rem 5% 2rem;
+  }
+
+  .fp-footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .fp-footer-section h3 {
+    margin-bottom: 1rem;
+    color: #667eea;
+  }
+
+  .fp-footer-section p,
+  .fp-footer-section a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    line-height: 1.6;
+  }
+
+  .fp-footer-section a:hover {
+    color: white;
+  }
+
+  .fp-footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* Loading animation for iframe */
+  .fp-iframe-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+    background: #f8fafc;
+    border-radius: 15px;
+  }
+
+  .fp-loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #e2e8f0;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Animations */
+  .fp-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+  }
+
+  .fp-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fp-bounce {
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+
+  /* RESPONSIVE DESIGN - COMPREHENSIVE FIX */
+  
+  /* Large tablets and small laptops */
+  @media (max-width: 1024px) {
+    .fp-hero-content {
+      gap: 3rem;
+    }
+    
+    .fp-hero-text h1 {
+      font-size: 3.5rem;
+    }
+    
+    .fp-section-title {
+      font-size: 2.5rem;
+    }
+    
+    .fp-contact-title {
+      font-size: 3rem;
+    }
+  }
+
+  /* Tablets */
+  @media (max-width: 768px) {
+    .fp-nav {
+      padding: 1rem 3%;
+    }
+
+    .fp-nav-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      flex-direction: column;
+      padding: 1rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 0 0 15px 15px;
+      gap: 1rem;
+    }
+
+    .fp-nav-menu.active {
+      display: flex;
+    }
+
+    .fp-mobile-toggle {
+      display: flex;
+    }
+
+    .fp-cta-nav {
+      font-size: 0.9rem;
+      padding: 10px 20px;
+    }
+
+    .fp-hero {
+      padding-top: 100px;
+    }
+
+    .fp-hero-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 2rem;
+      padding: 2rem 3%;
+    }
+
+    .fp-hero-text h1 {
+      font-size: 2.8rem;
+    }
+
+    .fp-hero-text p {
+      font-size: 1.1rem;
+    }
+
+    .fp-hero-cta {
+      justify-content: center;
+    }
+
+    .fp-btn-primary,
+    .fp-btn-secondary {
+      padding: 15px 30px;
+      font-size: 1rem;
+    }
+
+    .fp-section-title {
+      font-size: 2.2rem;
+    }
+
+    .fp-section-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .fp-contact-title {
+      font-size: 2.5rem;
+    }
+
+    .fp-contact-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .fp-calendar-container {
+      padding: 2rem;
+      margin: 0 1rem;
+    }
+
+    .fp-calendar-header h3 {
+      font-size: 1.5rem;
+    }
+
+    .fp-services,
+    .fp-process,
+    .fp-results,
+    .fp-testimonials,
+    .fp-contact {
+      padding: 5rem 3%;
+    }
+
+    .fp-stats {
+      padding: 3rem 3%;
+    }
+
+    .fp-stats-container {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 2rem;
+      gap: 1.5rem;
+    }
+
+    .fp-stat-number {
+      font-size: 2.5rem;
+    }
+
+    /* Process Section Mobile Fix */
+    .fp-process-timeline::before {
+      left: 30px;
+    }
+
+    .fp-process-step {
+      flex-direction: column;
+      margin-left: 60px;
+      margin-right: 0;
+      text-align: left;
+    }
+
+    .fp-process-step:nth-child(even) {
+      flex-direction: column;
+    }
+
+    .fp-process-step:nth-child(even) .fp-process-content {
+      text-align: left;
+    }
+
+    .fp-process-number {
+      left: 30px;
+      transform: translateY(-50%);
+    }
+
+    .fp-process-content {
+      margin: 0;
+      margin-left: 1rem;
+    }
+
+    .fp-services-grid,
+    .fp-results-grid,
+    .fp-testimonials-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .fp-services-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .fp-trust-badges {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .fp-cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .fp-footer-content {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  /* Mobile phones */
+  @media (max-width: 480px) {
+    .fp-nav {
+      padding: 1rem 2%;
+    }
+
+    .fp-logo {
+      font-size: 1.5rem;
+    }
+
+    .fp-hero {
+      padding-top: 120px;
+    }
+
+    .fp-hero-content {
+      padding: 1.5rem 2%;
+    }
+
+    .fp-hero-text h1 {
+      font-size: 2.2rem;
+    }
+
+    .fp-hero-text p {
+      font-size: 1rem;
+    }
+
+    .fp-btn-primary,
+    .fp-btn-secondary {
+      padding: 12px 24px;
+      font-size: 0.9rem;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .fp-section-title {
+      font-size: 1.8rem;
+    }
+
+    .fp-section-subtitle {
+      font-size: 1rem;
+    }
+
+    .fp-contact-title {
+      font-size: 2rem;
+    }
+
+    .fp-contact-subtitle {
+      font-size: 1rem;
+    }
+
+    .fp-cta-title {
+      font-size: 1.8rem;
+    }
+
+    .fp-cta-description {
+      font-size: 1rem;
+    }
+
+    .fp-calendar-container {
+      padding: 1.5rem;
+      margin: 0 0.5rem;
+    }
+
+    .fp-calendar-header h3 {
+      font-size: 1.3rem;
+    }
+
+    .fp-calendar-header p {
+      font-size: 0.9rem;
+    }
+
+    .fp-calendar-iframe {
+      min-height: 500px;
+    }
+
+    .fp-services,
+    .fp-process,
+    .fp-results,
+    .fp-testimonials,
+    .fp-contact,
+    .fp-cta-section {
+      padding: 4rem 2%;
+    }
+
+    .fp-stats {
+      padding: 2rem 2%;
+    }
+
+    .fp-stats-container {
+      grid-template-columns: 1fr;
+      padding: 1.5rem;
+    }
+
+    .fp-stat-number {
+      font-size: 2rem;
+    }
+
+    .fp-service-card,
+    .fp-result-card,
+    .fp-testimonial {
+      padding: 1.5rem;
+    }
+
+    .fp-service-icon {
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+    }
+
+    .fp-process-content {
+      padding: 1.5rem;
+      margin-left: 0.5rem;
+    }
+
+    .fp-process-number {
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+      left: 25px;
+    }
+
+    .fp-process-timeline::before {
+      left: 25px;
+    }
+
+    .fp-process-step {
+      margin-left: 45px;
+    }
+
+    .fp-footer-content {
+      grid-template-columns: 1fr;
+    }
+
+    .fp-footer {
+      padding: 3rem 2% 1.5rem;
+    }
+
+    .fp-trust-badge {
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Extra small devices */
+  @media (max-width: 320px) {
+    .fp-hero-text h1 {
+      font-size: 1.8rem;
+    }
+    
+    .fp-section-title {
+      font-size: 1.5rem;
+    }
+    
+    .fp-contact-title {
+      font-size: 1.5rem;
+    }
+    
+    .fp-calendar-container {
+      padding: 1rem;
+    }
+    
+    .fp-calendar-iframe {
+      min-height: 450px;
+    }
+  }
+</style>
+
+<div class="fluxpropel-website">
+  <!-- Header -->
+  <header class="fp-header">
+    <nav class="fp-nav">
+      <div class="fp-logo">FluxPropel</div>
+      <ul class="fp-nav-menu">
+        <li><a href="#home" class="fp-nav-link">Home</a></li>
+        <li><a href="#services" class="fp-nav-link">Services</a></li>
+        <li><a href="#process" class="fp-nav-link">Process</a></li>
+        <li><a href="#results" class="fp-nav-link">Results</a></li>
+        <li><a href="#contact" class="fp-nav-link">Book Call</a></li>
+      </ul>
+      <a href="#contact" class="fp-cta-nav">Book Strategy Session</a>
+      <div class="fp-mobile-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="fp-hero">
+    <div class="fp-hero-content">
+      <div class="fp-hero-text">
+        <h1>Scale Your Business <span class="highlight">10x</span> with High-Converting Funnels</h1>
+        <p>FluxPropel specializes in building powerful 2-step funnels using GoHighLevel, combined with cutting-edge AI automation to transform your lead generation and scale your business exponentially.</p>
+        <div class="fp-hero-cta">
+          <a href="#contact" class="fp-btn-primary">
+            Book Free Strategy Session
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+          <a href="#services" class="fp-btn-secondary">
+            Learn More
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="fp-hero-visual">
+        <div class="fp-dashboard-mockup">
+          <div style="background: linear-gradient(135deg, #667eea, #764ba2); height: 40px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; padding: 0 15px; color: white; font-weight: 600;">
+            FluxPropel Dashboard
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+            <div style="background: #f0f4f8; padding: 20px; border-radius: 10px; text-align: center;">
+              <div style="font-size: 2rem; font-weight: 800; color: #667eea;">847%</div>
+              <div style="font-size: 0.9rem; color: #666;">ROI Increase</div>
+            </div>
+            <div style="background: #f0f4f8; padding: 20px; border-radius: 10px; text-align: center;">
+              <div style="font-size: 2rem; font-weight: 800; color: #ff6b6b;">2.3M</div>
+              <div style="font-size: 0.9rem; color: #666;">Leads Generated</div>
+            </div>
+          </div>
+          <div style="background: #f0f4f8; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+            <div style="background: #667eea; height: 10px; border-radius: 5px; width: 85%;"></div>
+          </div>
+          <div style="background: #f0f4f8; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+            <div style="background: #ff6b6b; height: 10px; border-radius: 5px; width: 92%;"></div>
+          </div>
+          <div style="background: #f0f4f8; padding: 15px; border-radius: 10px;">
+            <div style="background: #48bb78; height: 10px; border-radius: 5px; width: 78%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="fp-stats">
+    <div class="fp-stats-container">
+      <div class="fp-stat-item">
+        <span class="fp-stat-number">500+</span>
+        <div class="fp-stat-label">Successful Funnels</div>
+      </div>
+      <div class="fp-stat-item">
+        <span class="fp-stat-number">2.3M+</span>
+        <div class="fp-stat-label">Leads Generated</div>
+      </div>
+      <div class="fp-stat-item">
+        <span class="fp-stat-number">847%</span>
+        <div class="fp-stat-label">Average ROI</div>
+      </div>
+      <div class="fp-stat-item">
+        <span class="fp-stat-number">98%</span>
+        <div class="fp-stat-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="fp-services">
+    <div class="fp-section-header">
+      <h2 class="fp-section-title">Our Specialized Services</h2>
+      <p class="fp-section-subtitle">We combine the power of GoHighLevel with advanced AI automation to deliver results that exceed expectations.</p>
+    </div>
+    <div class="fp-services-grid">
+      <div class="fp-service-card fp-fade-in">
+        <div class="fp-service-icon">🚀</div>
+        <h3 class="fp-service-title">High-Converting Funnels</h3>
+        <p class="fp-service-description">Custom-built 2-step funnels designed to maximize conversions and revenue using proven psychological triggers and optimization techniques.</p>
+        <ul class="fp-service-features">
+          <li>Landing page optimization</li>
+          <li>A/B testing implementation</li>
+          <li>Conversion rate optimization</li>
+          <li>Mobile-responsive design</li>
+          <li>Advanced analytics tracking</li>
+        </ul>
+      </div>
+      <div class="fp-service-card fp-fade-in">
+        <div class="fp-service-icon">🤖</div>
+        <h3 class="fp-service-title">AI Automation</h3>
+        <p class="fp-service-description">Intelligent automation systems that work 24/7 to nurture leads, qualify prospects, and drive sales without manual intervention.</p>
+        <ul class="fp-service-features">
+          <li>Chatbot development</li>
+          <li>Email automation sequences</li>
+          <li>Lead scoring & qualification</li>
+          <li>Personalized follow-ups</li>
+          <li>Smart workflow automation</li>
+        </ul>
+      </div>
+      <div class="fp-service-card fp-fade-in">
+        <div class="fp-service-icon">💻</div>
+        <h3 class="fp-service-title">Web Development</h3>
+        <p class="fp-service-description">Professional website development with focus on user experience, conversion optimization, and seamless integration with your marketing stack.</p>
+        <ul class="fp-service-features">
+          <li>Custom website design</li>
+          <li>GoHighLevel integration</li>
+          <li>Performance optimization</li>
+          <li>SEO implementation</li>
+          <li>Ongoing maintenance</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="fp-process">
+    <div class="fp-section-header">
+      <h2 class="fp-section-title">Our Proven Process</h2>
+      <p class="fp-section-subtitle">A systematic approach that delivers consistent results for every client.</p>
+    </div>
+    <div class="fp-process-timeline">
+      <div class="fp-process-step">
+        <div class="fp-process-number">1</div>
+        <div class="fp-process-content fp-fade-in">
+          <h3 class="fp-process-title">Strategy & Analysis</h3>
+          <p class="fp-process-description">We deep-dive into your business, analyze your target audience, and identify the most effective funnel strategy for your specific goals and market.</p>
+        </div>
+      </div>
+      <div class="fp-process-step">
+        <div class="fp-process-number">2</div>
+        <div class="fp-process-content fp-fade-in">
+          <h3 class="fp-process-title">Design & Development</h3>
+          <p class="fp-process-description">Our team creates high-converting funnel designs and develops them using GoHighLevel's powerful platform, ensuring optimal performance and user experience.</p>
+        </div>
+      </div>
+      <div class="fp-process-step">
+        <div class="fp-process-number">3</div>
+        <div class="fp-process-content fp-fade-in">
+          <h3 class="fp-process-title">AI Integration</h3>
+          <p class="fp-process-description">We implement advanced AI automation systems that handle lead nurturing, qualification, and follow-up processes automatically, maximizing efficiency and conversions.</p>
+        </div>
+      </div>
+      <div class="fp-process-step">
+        <div class="fp-process-number">4</div>
+        <div class="fp-process-content fp-fade-in">
+          <h3 class="fp-process-title">Launch & Optimize</h3>
+          <p class="fp-process-description">After thorough testing, we launch your funnel and continuously monitor performance, making data-driven optimizations to maximize your ROI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section id="results" class="fp-results">
+    <div class="fp-section-header">
+      <h2 class="fp-section-title">Proven Results</h2>
+      <p class="fp-section-subtitle">Real numbers from real clients who've scaled their businesses with FluxPropel.</p>
+    </div>
+    <div class="fp-results-grid">
+      <div class="fp-result-card fp-fade-in">
+        <div class="fp-result-metric">1,247%</div>
+        <div class="fp-result-label">ROI Increase</div>
+        <p class="fp-result-description">E-commerce client achieved 12x return on ad spend within 6 months</p>
+      </div>
+      <div class="fp-result-card fp-fade-in">
+        <div class="fp-result-metric">$2.8M</div>
+        <div class="fp-result-label">Revenue Generated</div>
+        <p class="fp-result-description">SaaS startup scaled from $50K to $2.8M ARR in 18 months</p>
+      </div>
+      <div class="fp-result-card fp-fade-in">
+        <div class="fp-result-metric">94%</div>
+        <div class="fp-result-label">Lead Quality Score</div>
+        <p class="fp-result-description">Coaching business improved lead quality by 94% with AI automation</p>
+      </div>
+      <div class="fp-result-card fp-fade-in">
+        <div class="fp-result-metric">340%</div>
+        <div class="fp-result-label">Conversion Increase</div>
+        <p class="fp-result-description">Real estate agency tripled conversions with optimized 2-step funnel</p>
+      </div>
+      <div class="fp-result-card fp-fade-in">
+        <div class="fp-result-metric">85%</div>
+        <div class="fp-result-label">Time Saved</div>
+        <p class="fp-result-description">Marketing agency reduced manual work by 85% with AI automation</p>
+      </div>
+      <div class="fp-result-card fp-fade-in">
+        <div class="fp-result-metric">450+</div>
+        <div class="fp-result-label">Daily Leads</div>
+        <p class="fp-result-description">Local service business generates 450+ qualified leads daily</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="fp-testimonials">
+    <div class="fp-section-header">
+      <h2 class="fp-section-title">What Our Clients Say</h2>
+      <p class="fp-section-subtitle">Success stories from businesses that have transformed with FluxPropel.</p>
+    </div>
+    <div class="fp-testimonials-grid">
+      <div class="fp-testimonial fp-fade-in">
+        <p class="fp-testimonial-text">FluxPropel transformed our lead generation completely. We went from struggling to get 10 leads per day to consistently generating 400+ qualified leads daily. The AI automation is incredible!</p>
+        <div class="fp-testimonial-author">
+          <div class="fp-author-avatar">JS</div>
+          <div class="fp-author-info">
+            <h4>John Smith</h4>
+            <p>CEO, Digital Marketing Pro</p>
+          </div>
+        </div>
+      </div>
+      <div class="fp-testimonial fp-fade-in">
+        <p class="fp-testimonial-text">The ROI has been absolutely phenomenal. Our conversion rates increased by 340% and we're now generating $2.8M annually. FluxPropel's expertise in GoHighLevel is unmatched.</p>
+        <div class="fp-testimonial-author">
+          <div class="fp-author-avatar">MJ</div>
+          <div class="fp-author-info">
+            <h4>Maria Johnson</h4>
+            <p>Founder, SaaS Innovations</p>
+          </div>
+        </div>
+      </div>
+      <div class="fp-testimonial fp-fade-in">
+        <p class="fp-testimonial-text">The AI automation has saved us 85% of our time while increasing lead quality by 94%. We can now focus on closing deals instead of manual follow-ups. Game-changer!</p>
+        <div class="fp-testimonial-author">
+          <div class="fp-author-avatar">RW</div>
+          <div class="fp-author-info">
+            <h4>Robert Wilson</h4>
+            <p>Director, Growth Solutions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact/Calendar Section -->
+  <section id="contact" class="fp-contact">
+    <div class="fp-contact-content">
+      <div class="fp-contact-header">
+        <h2 class="fp-contact-title">Book Your Free Strategy Session</h2>
+        <p class="fp-contact-subtitle">Ready to scale your business 10x? Schedule a free 30-minute strategy session with our experts. We'll analyze your current funnel performance and show you exactly how to multiply your results.</p>
+      </div>
+      
+      <div class="fp-calendar-container fp-fade-in">
+        <div class="fp-calendar-header">
+          <h3>Choose Your Preferred Time</h3>
+          <p>Select a convenient time slot for your personalized strategy session. Our calendar includes a built-in form to capture your details automatically.</p>
+        </div>
+        
+        <div class="fp-calendar-iframe-wrapper">
+          <div id="calendar-loading" class="fp-iframe-loading">
+            <div class="fp-loading-spinner"></div>
+          </div>
+          <iframe 
+            src="https://api.leadconnectorhq.com/widget/booking/PhgKn2Lz9z4U8J3in76h" 
+            class="fp-calendar-iframe"
+            scrolling="no" 
+            id="PhgKn2Lz9z4U8J3in76h_1759981585028"
+            onload="hideCalendarLoading()"
+            style="display: none;">
+          </iframe>
+        </div>
+        
+        <div class="fp-trust-badges">
+          <div class="fp-trust-badge">
+            <svg class="fp-trust-icon" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            100% Free Consultation
+          </div>
+          <div class="fp-trust-badge">
+            <svg class="fp-trust-icon" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            No Obligation Required
+          </div>
+          <div class="fp-trust-badge">
+            <svg class="fp-trust-icon" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            Instant Calendar Booking
+          </div>
+          <div class="fp-trust-badge">
+            <svg class="fp-trust-icon" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            Expert GoHighLevel Specialists
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Secondary CTA Section -->
+  <section class="fp-cta-section">
+    <div class="fp-cta-content">
+      <h2 class="fp-cta-title">Can't Find a Suitable Time?</h2>
+      <p class="fp-cta-description">Contact us directly and we'll arrange a personalized consultation that fits your schedule.</p>
+      <div class="fp-cta-buttons">
+        <a href="mailto:hello@fluxpropel.com" class="fp-btn-primary">
+          Email Us Directly
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+          </svg>
+        </a>
+        <a href="tel:+1234567890" class="fp-btn-secondary">
+          Call: (123) 456-7890
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="fp-footer">
+    <div class="fp-footer-content">
+      <div class="fp-footer-section">
+        <h3>FluxPropel</h3>
+        <p>Specializing in high-converting 2-step funnels using GoHighLevel. We help businesses scale 10x through powerful web development and AI automation solutions.</p>
+        <p style="margin-top: 1rem;"><strong>Ready to transform your business?</strong></p>
+      </div>
+      <div class="fp-footer-section">
+        <h3>Services</h3>
+        <p><a href="#services">GoHighLevel Funnels</a></p>
+        <p><a href="#services">AI Automation</a></p>
+        <p><a href="#services">Web Development</a></p>
+        <p><a href="#services">Conversion Optimization</a></p>
+        <p><a href="#services">Lead Generation</a></p>
+      </div>
+      <div class="fp-footer-section">
+        <h3>Company</h3>
+        <p><a href="#home">About FluxPropel</a></p>
+        <p><a href="#results">Success Stories</a></p>
+        <p><a href="#process">Our Methodology</a></p>
+        <p><a href="#contact">Book Consultation</a></p>
+        <p><a href="#testimonials">Client Reviews</a></p>
+      </div>
+      <div class="fp-footer-section">
+        <h3>Contact Information</h3>
+        <p><strong>Email:</strong> hello@fluxpropel.com</p>
+        <p><strong>Phone:</strong> (123) 456-7890</p>
+        <p><strong>Available:</strong> 24/7 for consultations</p>
+        <p style="margin-top: 1rem;"><a href="#contact" style="color: #667eea; font-weight: 600;">📅 Book Strategy Session</a></p>
+      </div>
+    </div>
+    <div class="fp-footer-bottom">
+      <p>&copy; 2024 FluxPropel. All rights reserved. | Transforming businesses through high-converting funnels and AI automation. | Proudly serving clients worldwide with GoHighLevel expertise.</p>
+    </div>
+  </footer>
+</div>
+
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+
+<script>
+  // Hide calendar loading spinner when iframe loads
+  function hideCalendarLoading() {
+    document.getElementById('calendar-loading').style.display = 'none';
+    document.getElementById('PhgKn2Lz9z4U8J3in76h_1759981585028').style.display = 'block';
+  }
+
+  // Smooth scrolling for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Fade in animation on scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fp-fade-in').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Header scroll effect
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('.fp-header');
+    if (window.scrollY > 100) {
+      header.style.background = 'rgba(255, 255, 255, 0.98)';
+      header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+    } else {
+      header.style.background = 'rgba(255, 255, 255, 0.95)';
+      header.style.boxShadow = 'none';
+    }
+  });
+
+  // Mobile menu toggle
+  document.querySelector('.fp-mobile-toggle').addEventListener('click', function() {
+    const menu = document.querySelector('.fp-nav-menu');
+    menu.classList.toggle('active');
+  });
+
+  // Close mobile menu when clicking a link
+  document.querySelectorAll('.fp-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelector('.fp-nav-menu').classList.remove('active');
+    });
+  });
+
+  // Initialize animations
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add loading animation to hero
+    setTimeout(() => {
+      const heroText = document.querySelector('.fp-hero-text');
+      const heroVisual = document.querySelector('.fp-hero-visual');
+      if (heroText) heroText.style.animation = 'fadeIn 1s ease-out';
+      if (heroVisual) heroVisual.style.animation = 'fadeIn 1s ease-out 0.3s both';
+    }, 100);
+
+    // Set a timeout to show iframe even if onload doesn't fire
+    setTimeout(() => {      if (document.getElementById('calendar-loading').style.display !== 'none') {
+        hideCalendarLoading();
+      }
+    }, 5000);
+
+    // Initialize scroll animations early
+    document.querySelectorAll('.fp-fade-in').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+    });
+
+    // Trigger animations for visible elements
+    setTimeout(() => {
+      const statsSection = document.querySelector('.fp-stats-container');
+      if (statsSection) {
+        statsSection.style.animation = 'fadeIn 0.8s ease-out 0.5s both';
+      }
+    }, 500);
+  });
+
+  // Track calendar interactions
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.fp-calendar-iframe-wrapper')) {
+      // Track calendar interaction
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'calendar_interaction', {
+          'event_category': 'booking',
+          'event_label': 'strategy_session'
+        });
+      }
+    }
+  });
+
+  // Track scroll to contact section
+  let contactSectionViewed = false;
+  const contactObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !contactSectionViewed) {
+        contactSectionViewed = true;
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'contact_section_view', {
+            'event_category': 'engagement',
+            'event_label': 'calendar_booking'
+          });
+        }
+      }
+    });
+  }, { threshold: 0.5 });
+
+  const contactSection = document.getElementById('contact');
+  if (contactSection) {
+    contactObserver.observe(contactSection);
+  }
+
+  // Enhanced iframe handling
+  const calendarIframe = document.getElementById('PhgKn2Lz9z4U8J3in76h_1759981585028');
+  
+  // Handle iframe communication if needed
+  window.addEventListener('message', function(event) {
+    // Handle messages from the GoHighLevel calendar iframe
+    if (event.origin === 'https://api.leadconnectorhq.com') {
+      console.log('Calendar iframe message:', event.data);
+      
+      // Track booking completion if message indicates booking was made
+      if (event.data && event.data.type === 'booking_completed') {
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'booking_completed', {
+            'event_category': 'conversion',
+            'event_label': 'strategy_session',
+            'value': 1
+          });
+        }
+      }
+    }
+  });
+
+  // Auto-resize iframe based on content (if supported)
+  if (calendarIframe) {
+    calendarIframe.onload = function() {
+      hideCalendarLoading();
+      
+      // Try to adjust iframe height
+      try {
+        const iframeContent = calendarIframe.contentWindow.document;
+        if (iframeContent) {
+          const height = iframeContent.body.scrollHeight;
+          if (height > 400) {
+            calendarIframe.style.height = height + 'px';
+          }
+        }
+      } catch (e) {
+        // Cross-origin restrictions prevent access - this is normal
+        console.log('Cannot access iframe content due to cross-origin restrictions');
+      }
+    };
+  }
+
+  // Enhanced mobile hamburger menu animation
+  const mobileToggle = document.querySelector('.fp-mobile-toggle');
+  if (mobileToggle) {
+    mobileToggle.addEventListener('click', function() {
+      this.classList.toggle('active');
+      const spans = this.querySelectorAll('span');
+      
+      if (this.classList.contains('active')) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+      } else {
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+      }
+    });
+  }
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', function(e) {
+    const navMenu = document.querySelector('.fp-nav-menu');
+    const mobileToggle = document.querySelector('.fp-mobile-toggle');
+    
+    if (navMenu && navMenu.classList.contains('active') && 
+        !navMenu.contains(e.target) && 
+        !mobileToggle.contains(e.target)) {
+      navMenu.classList.remove('active');
+      mobileToggle.classList.remove('active');
+      
+      // Reset hamburger icon
+      const spans = mobileToggle.querySelectorAll('span');
+      spans[0].style.transform = 'none';
+      spans[1].style.opacity = '1';
+      spans[2].style.transform = 'none';
+    }
+  });
+
+  // Enhanced scroll performance with throttling
+  let ticking = false;
+  function updateHeader() {
+    const header = document.querySelector('.fp-header');
+    if (window.scrollY > 100) {
+      header.style.background = 'rgba(255, 255, 255, 0.98)';
+      header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+    } else {
+      header.style.background = 'rgba(255, 255, 255, 0.95)';
+      header.style.boxShadow = 'none';
+    }
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  });
+
+  // Add touch support for mobile devices
+  let touchStartY = 0;
+  document.addEventListener('touchstart', function(e) {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchmove', function(e) {
+    const touchY = e.touches[0].clientY;
+    const touchDiff = touchStartY - touchY;
+    
+    // Only trigger header change on significant scroll
+    if (Math.abs(touchDiff) > 50) {
+      updateHeader();
+    }
+  }, { passive: true });
+
+  // Intersection Observer for better animation performance
+  const animationObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        
+        // Add staggered animation for grid items
+        if (entry.target.parentElement.classList.contains('fp-services-grid') ||
+            entry.target.parentElement.classList.contains('fp-results-grid') ||
+            entry.target.parentElement.classList.contains('fp-testimonials-grid')) {
+          
+          const siblings = Array.from(entry.target.parentElement.children);
+          const index = siblings.indexOf(entry.target);
+          entry.target.style.transitionDelay = `${index * 0.1}s`;
+        }
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  // Observe all fade-in elements
+  document.querySelectorAll('.fp-fade-in').forEach(el => {
+    animationObserver.observe(el);
+  });
+
+  // Preload critical resources
+  function preloadResources() {
+    // Preload calendar iframe to improve loading speed
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.href = 'https://api.leadconnectorhq.com/widget/booking/PhgKn2Lz9z4U8J3in76h';
+    document.head.appendChild(link);
+  }
+
+  // Call preload on page load
+  window.addEventListener('load', preloadResources);
+
+  // Error handling for iframe loading
+  let iframeLoadAttempts = 0;
+  const maxIframeAttempts = 3;
+
+  function retryIframeLoad() {
+    if (iframeLoadAttempts < maxIframeAttempts) {
+      iframeLoadAttempts++;
+      const iframe = document.getElementById('PhgKn2Lz9z4U8J3in76h_1759981585028');
+      if (iframe) {
+        iframe.src = iframe.src; // Reload iframe
+      }
+      
+      setTimeout(() => {
+        if (document.getElementById('calendar-loading').style.display !== 'none') {
+          retryIframeLoad();
+        }
+      }, 3000);
+    } else {
+      // Show fallback message if iframe fails to load
+      const loadingElement = document.getElementById('calendar-loading');
+      if (loadingElement && loadingElement.style.display !== 'none') {
+        loadingElement.innerHTML = `
+          <div style="text-align: center; padding: 2rem; color: #666;">
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">Having trouble loading the calendar?</p>
+            <p style="margin-bottom: 1.5rem;">Contact us directly to schedule your strategy session:</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+              <a href="mailto:hello@fluxpropel.com" style="background: #667eea; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600;">Email Us</a>
+              <a href="tel:+1234567890" style="background: transparent; color: #667eea; border: 2px solid #667eea; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600;">Call Us</a>
+            </div>
+          </div>
+        `;
+      }
+    }
+  }
+
+  // Start iframe retry mechanism
+  setTimeout(() => {
+    if (document.getElementById('calendar-loading').style.display !== 'none') {
+      retryIframeLoad();
+    }
+  }, 8000);
+
+  // Add keyboard navigation support
+  document.addEventListener('keydown', function(e) {
+    // ESC key closes mobile menu
+    if (e.key === 'Escape') {
+      const navMenu = document.querySelector('.fp-nav-menu');
+      const mobileToggle = document.querySelector('.fp-mobile-toggle');
+      
+      if (navMenu && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        mobileToggle.classList.remove('active');
+        
+        // Reset hamburger icon
+        const spans = mobileToggle.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+      }
+    }
+  });
+
+  // Performance monitoring
+  window.addEventListener('load', function() {
+    // Log performance metrics (for debugging)
+    if (window.performance && window.performance.timing) {
+      const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+      console.log('Page load time:', loadTime + 'ms');
+    }
+  });
+
+  // Add smooth scrolling fallback for older browsers
+  if (!('scrollBehavior' in document.documentElement.style)) {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const targetPosition = target.offsetTop - 80; // Account for fixed header
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  }
+
+  // Enhanced form handling if additional forms are added
+  document.addEventListener('submit', function(e) {
+    const form = e.target;
+    if (form.tagName === 'FORM') {
+      // Add loading state to submit buttons
+      const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        
+        // Re-enable after 5 seconds (fallback)
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit';
+        }, 5000);
+      }
+    }
+  });
+
+  // Add copy to clipboard functionality for contact info
+  function addCopyToClipboard() {
+    const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+    
+    [...emailLinks, ...phoneLinks].forEach(link => {
+      link.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        const text = this.href.replace('mailto:', '').replace('tel:', '');
+        
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(() => {
+            // Show temporary notification
+            const notification = document.createElement('div');
+            notification.textContent = 'Copied to clipboard!';
+            notification.style.cssText = `
+              position: fixed;
+              top: 20px;
+              right: 20px;
+              background: #48bb78;
+              color: white;
+              padding: 10px 20px;
+              border-radius: 5px;
+              z-index: 10000;
+              font-size: 14px;
+              animation: fadeIn 0.3s ease-out;
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+              notification.remove();
+            }, 2000);
+          });
+        }
+      });
+    });
+  }
+
+  // Initialize copy functionality
+  addCopyToClipboard();
+
+  console.log('FluxPropel website initialized successfully');
+</script>
