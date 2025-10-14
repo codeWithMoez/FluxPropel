@@ -296,6 +296,63 @@
         transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
       }
 
+      /* --- NEW CSS FOR MOCKUP (REPLACES INLINE STYLES) --- */
+      .mockup-header {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        height: 40px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        color: white;
+        font-weight: 600;
+      }
+
+      .mockup-stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .mockup-stat-card {
+        background: #f0f4f8;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .mockup-stat-value {
+        font-size: 2rem;
+        font-weight: 800;
+      }
+
+      .mockup-stat-value.roi {
+        color: #667eea;
+      }
+      .mockup-stat-value.leads {
+        color: #ff6b6b;
+      }
+
+      .mockup-stat-label {
+        font-size: 0.9rem;
+        color: #666;
+        line-height: 1.2; /* Added for better text wrapping */
+      }
+
+      .mockup-bar-container {
+        background: #f0f4f8;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+
+      .mockup-bar {
+        height: 10px;
+        border-radius: 5px;
+      }
+
       /* Stats Section */
       .fp-stats {
         background: white;
@@ -944,6 +1001,7 @@
         .fp-hero {
           padding-top: 120px;
           min-height: auto;
+          padding-bottom: 4rem; /* Added padding */
         }
         .fp-hero-content {
           grid-template-columns: 1fr; /* Stack content vertically */
@@ -973,8 +1031,24 @@
         .fp-dashboard-mockup {
           transform: none; /* Disable 3D tilt on mobile */
           max-width: 450px;
-          margin: 2rem auto 0;
+          margin: 0 auto; /* Removed top margin for better alignment */
+          padding: 15px; /* Reduced padding */
         }
+
+        /* --- FIXED MOCKUP STYLES --- */
+        .mockup-stats-grid {
+          gap: 10px;
+        }
+        .mockup-stat-card {
+          padding: 10px; /* Reduced padding */
+        }
+        .mockup-stat-value {
+          font-size: 1.5rem; /* Reduced font size */
+        }
+        .mockup-stat-label {
+          font-size: 0.75rem; /* Reduced font size */
+        }
+        /* --- END OF FIX --- */
 
         /* --- Stats Section --- */
         .fp-stats-container {
@@ -1063,6 +1137,9 @@
         }
         .fp-section-subtitle {
           font-size: 1rem;
+        }
+        .fp-dashboard-mockup {
+          max-width: 100%;
         }
 
         /* --- Stats Section --- */
@@ -1167,106 +1244,33 @@
           </div>
           <div class="fp-hero-visual">
             <div class="fp-dashboard-mockup">
-              <div
-                style="
-                  background: linear-gradient(135deg, #667eea, #764ba2);
-                  height: 40px;
-                  border-radius: 10px;
-                  margin-bottom: 20px;
-                  display: flex;
-                  align-items: center;
-                  padding: 0 15px;
-                  color: white;
-                  font-weight: 600;
-                "
-              >
-                FluxPropel Dashboard
-              </div>
-              <div
-                style="
-                  display: grid;
-                  grid-template-columns: 1fr 1fr;
-                  gap: 15px;
-                  margin-bottom: 20px;
-                "
-              >
-                <div
-                  style="
-                    background: #f0f4f8;
-                    padding: 20px;
-                    border-radius: 10px;
-                    text-align: center;
-                  "
-                >
-                  <div
-                    style="font-size: 2rem; font-weight: 800; color: #667eea"
-                  >
-                    847%
-                  </div>
-                  <div style="font-size: 0.9rem; color: #666">ROI Increase</div>
+              <div class="mockup-header">FluxPropel Dashboard</div>
+              <div class="mockup-stats-grid">
+                <div class="mockup-stat-card">
+                  <div class="mockup-stat-value roi">847%</div>
+                  <div class="mockup-stat-label">ROI Increase</div>
                 </div>
-                <div
-                  style="
-                    background: #f0f4f8;
-                    padding: 20px;
-                    border-radius: 10px;
-                    text-align: center;
-                  "
-                >
-                  <div
-                    style="font-size: 2rem; font-weight: 800; color: #ff6b6b"
-                  >
-                    2.3M
-                  </div>
-                  <div style="font-size: 0.9rem; color: #666">
-                    Leads Generated
-                  </div>
+                <div class="mockup-stat-card">
+                  <div class="mockup-stat-value leads">2.3M</div>
+                  <div class="mockup-stat-label">Leads Generated</div>
                 </div>
               </div>
-              <div
-                style="
-                  background: #f0f4f8;
-                  padding: 15px;
-                  border-radius: 10px;
-                  margin-bottom: 10px;
-                "
-              >
+              <div class="mockup-bar-container">
                 <div
-                  style="
-                    background: #667eea;
-                    height: 10px;
-                    border-radius: 5px;
-                    width: 85%;
-                  "
+                  class="mockup-bar"
+                  style="background: #667eea; width: 85%"
                 ></div>
               </div>
-              <div
-                style="
-                  background: #f0f4f8;
-                  padding: 15px;
-                  border-radius: 10px;
-                  margin-bottom: 10px;
-                "
-              >
+              <div class="mockup-bar-container">
                 <div
-                  style="
-                    background: #ff6b6b;
-                    height: 10px;
-                    border-radius: 5px;
-                    width: 92%;
-                  "
+                  class="mockup-bar"
+                  style="background: #ff6b6b; width: 92%"
                 ></div>
               </div>
-              <div
-                style="background: #f0f4f8; padding: 15px; border-radius: 10px"
-              >
+              <div class="mockup-bar-container" style="margin-bottom: 0">
                 <div
-                  style="
-                    background: #48bb78;
-                    height: 10px;
-                    border-radius: 5px;
-                    width: 78%;
-                  "
+                  class="mockup-bar"
+                  style="background: #48bb78; width: 78%"
                 ></div>
               </div>
             </div>
