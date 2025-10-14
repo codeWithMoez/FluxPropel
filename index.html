@@ -1079,15 +1079,26 @@
           padding: 1.5rem;
         }
 
-        .fp-contact-title {
-          font-size: 2.8rem;
-        }
-        .fp-calendar-container {
-          padding: 2rem 1.5rem;
-        }
-        .fp-calendar-iframe {
-          min-height: 750px;
-        }
+        /* --- Contact Section & Calendar --- */
+.fp-contact-title {
+  font-size: 2.8rem;
+}
+.fp-calendar-container {
+  /* Remove all padding, background, and shadows to make it transparent */
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  border: none;
+}
+.fp-calendar-iframe-wrapper {
+  /* Remove rounding since it's now edge-to-edge */
+  border-radius: 0;
+  box-shadow: none;
+}
+.fp-calendar-iframe {
+  min-height: 750px;
+  border-radius: 0; /* Ensure iframe itself isn't rounded */
+}
 
         .fp-footer-content {
           grid-template-columns: 1fr;
