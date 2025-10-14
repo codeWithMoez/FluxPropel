@@ -763,6 +763,7 @@
         border-radius: 25px;
         padding: 3rem;
         box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+        -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.2);
         max-width: 900px;
@@ -792,13 +793,13 @@
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         background: white;
-        min-height: 600px;
+        min-height: 850px; /* CHANGED */
         position: relative;
       }
 
       .fp-calendar-iframe {
         width: 100%;
-        min-height: 600px;
+        min-height: 850px; /* CHANGED */
         border: none;
         border-radius: 15px;
       }
@@ -1110,7 +1111,7 @@
           padding: 2rem 1.5rem;
         }
         .fp-calendar-iframe {
-          min-height: 650px; /* Make iframe taller for easier use */
+          min-height: 750px; /* Make iframe taller for easier use */
         }
 
         /* --- Footer Section --- */
@@ -1165,7 +1166,7 @@
           padding: 1.5rem;
         }
         .fp-calendar-iframe {
-          min-height: 550px;
+          min-height: 750px;
         }
 
         /* --- Footer --- */
