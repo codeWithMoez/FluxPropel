@@ -296,6 +296,7 @@
         transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
       }
 
+      /* --- NEW CSS FOR MOCKUP (REPLACES INLINE STYLES) --- */
       .mockup-header {
         background: linear-gradient(135deg, #667eea, #764ba2);
         height: 40px;
@@ -337,7 +338,7 @@
       .mockup-stat-label {
         font-size: 0.9rem;
         color: #666;
-        line-height: 1.2;
+        line-height: 1.2; /* Added for better text wrapping */
       }
 
       .mockup-bar-container {
@@ -352,6 +353,7 @@
         border-radius: 5px;
       }
 
+      /* Stats Section */
       .fp-stats {
         background: white;
         padding: 5rem 5% 3rem;
@@ -393,6 +395,7 @@
         margin-top: 0.5rem;
       }
 
+      /* General Section Header Styles */
       .fp-section-header {
         text-align: center;
         max-width: 800px;
@@ -412,6 +415,7 @@
         line-height: 1.6;
       }
 
+      /* Sections Base Padding */
       .fp-services,
       .fp-process,
       .fp-results,
@@ -421,6 +425,7 @@
         padding: 6rem 5%;
       }
 
+      /* Services Section */
       .fp-services {
         background: #f8fafc;
       }
@@ -504,6 +509,7 @@
         font-size: 1.2rem;
       }
 
+      /* Process Section */
       .fp-process {
         background: white;
       }
@@ -532,6 +538,7 @@
         z-index: 2;
       }
 
+      /* Clear floats for desktop timeline */
       .fp-process-step::after {
         content: "";
         display: table;
@@ -540,7 +547,7 @@
 
       .fp-process-content {
         position: relative;
-        width: calc(50% - 65px);
+        width: calc(50% - 65px); /* 50% minus margin */
         padding: 2rem 2.5rem;
         background: white;
         border-radius: 15px;
@@ -589,6 +596,7 @@
         line-height: 1.6;
       }
 
+      /* Portfolio/Results Section */
       .fp-results {
         background: #f8fafc;
       }
@@ -636,6 +644,7 @@
         line-height: 1.5;
       }
 
+      /* Testimonials */
       .fp-testimonials {
         background: white;
       }
@@ -700,6 +709,7 @@
         font-size: 0.9rem;
       }
 
+      /* Contact/Calendar Section */
       .fp-contact {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         position: relative;
@@ -782,13 +792,13 @@
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         background: white;
-        min-height: 850px;
+        min-height: 600px;
         position: relative;
       }
 
       .fp-calendar-iframe {
         width: 100%;
-        min-height: 850px;
+        min-height: 600px;
         border: none;
         border-radius: 15px;
       }
@@ -816,6 +826,7 @@
         color: #48bb78;
       }
 
+      /* CTA Section */
       .fp-cta-section {
         background: #1a202c;
         text-align: center;
@@ -850,6 +861,7 @@
         flex-wrap: wrap;
       }
 
+      /* Footer */
       .fp-footer {
         background: #0f1419;
         color: white;
@@ -888,6 +900,7 @@
         color: rgba(255, 255, 255, 0.6);
       }
 
+      /* Loading animation for iframe */
       .fp-iframe-loading {
         display: flex;
         align-items: center;
@@ -915,6 +928,7 @@
         }
       }
 
+      /* Animations */
       .fp-fade-in {
         opacity: 0;
         transform: translateY(30px);
@@ -925,8 +939,14 @@
         opacity: 1;
         transform: translateY(0);
       }
-      
+
+      /* =================================================================== */
+      /* ============== COMPLETE RESPONSIVE STYLES (MOBILE-FIRST) ============ */
+      /* =================================================================== */
+
+      /* Tablet & Mobile Breakpoint */
       @media (max-width: 992px) {
+        /* --- General Resets for Mobile --- */
         .fp-section-title {
           font-size: 2.5rem;
           line-height: 1.2;
@@ -943,6 +963,7 @@
           padding: 4rem 5%;
         }
 
+        /* --- Navigation Bar --- */
         .fp-nav-menu {
           display: none;
           position: absolute;
@@ -958,7 +979,7 @@
           border-bottom-right-radius: 15px;
         }
         .fp-nav-menu.active {
-          display: flex;
+          display: flex; /* Show when hamburger is clicked */
         }
         .fp-nav-menu li {
           width: 100%;
@@ -970,19 +991,20 @@
           font-size: 1.1rem;
         }
         .fp-mobile-toggle {
-          display: flex;
+          display: flex; /* Show hamburger icon */
         }
         .fp-cta-nav {
-          display: none;
+          display: none; /* Hide the CTA button in the nav on mobile */
         }
 
+        /* --- Hero Section --- */
         .fp-hero {
           padding-top: 120px;
           min-height: auto;
-          padding-bottom: 4rem;
+          padding-bottom: 4rem; /* Added padding */
         }
         .fp-hero-content {
-          grid-template-columns: 1fr;
+          grid-template-columns: 1fr; /* Stack content vertically */
           text-align: center;
           gap: 3rem;
         }
@@ -998,7 +1020,6 @@
         .fp-hero-cta {
           justify-content: center;
         }
-        
         .fp-btn-primary,
         .fp-btn-secondary {
           padding: 1rem 2rem;
@@ -1007,30 +1028,31 @@
           max-width: 350px;
           justify-content: center;
         }
-        
         .fp-dashboard-mockup {
-          transform: none;
+          transform: none; /* Disable 3D tilt on mobile */
           max-width: 450px;
-          margin-left: auto;
-          margin-right: auto;
-          padding: 15px;
+          margin: 0 auto; /* Removed top margin for better alignment */
+          padding: 15px; /* Reduced padding */
         }
 
+        /* --- FIXED MOCKUP STYLES --- */
         .mockup-stats-grid {
           gap: 10px;
         }
         .mockup-stat-card {
-          padding: 10px;
+          padding: 10px; /* Reduced padding */
         }
         .mockup-stat-value {
-          font-size: 1.5rem;
+          font-size: 1.5rem; /* Reduced font size */
         }
         .mockup-stat-label {
-          font-size: 0.75rem;
+          font-size: 0.75rem; /* Reduced font size */
         }
-        
+        /* --- END OF FIX --- */
+
+        /* --- Stats Section --- */
         .fp-stats-container {
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr 1fr; /* 2x2 grid */
           gap: 1rem;
           padding: 2rem;
         }
@@ -1038,65 +1060,60 @@
           font-size: 2.5rem;
         }
 
+        /* --- Card Sections (Services, Results, Testimonials) --- */
         .fp-services-grid,
         .fp-results-grid,
         .fp-testimonials-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns: 1fr; /* Stack cards vertically */
           gap: 2rem;
         }
 
+        /* --- Process Section (Timeline) REBUILT FOR MOBILE --- */
         .fp-process-timeline::before {
-          left: 35px;
+          left: 35px; /* Move line to the left edge */
           transform: none;
         }
         .fp-process-step {
-          display: flex;
-          align-items: flex-start;
+          display: flex; /* Use flexbox for robust alignment */
+          align-items: flex-start; /* Align items to the top */
           padding: 1.5rem 0;
-          gap: 25px;
+          gap: 25px; /* Space between number and content */
         }
         .fp-process-step::after {
-          display: none;
+          display: none; /* Disable clear fix */
         }
         .fp-process-number {
-          position: static;
+          position: static; /* Remove absolute positioning */
           transform: none;
-          flex-shrink: 0;
+          flex-shrink: 0; /* Prevent circle from shrinking */
           width: 70px;
           height: 70px;
           font-size: 1.5rem;
           border-width: 4px;
-          box-shadow: none;
+          box-shadow: none; /* Simplify shadow */
         }
+        /* Remove float and align all content to the left */
         .fp-process-step:nth-child(odd) .fp-process-content,
         .fp-process-step:nth-child(even) .fp-process-content {
           float: none;
-          width: auto;
+          width: auto; /* Allow content to take available space */
           flex-grow: 1;
-          text-align: left !important;
+          text-align: left !important; /* Force left alignment */
           padding: 1.5rem;
         }
 
+        /* --- Contact Section & Calendar --- */
         .fp-contact-title {
           font-size: 2.8rem;
         }
-
-        /* --- THIS IS THE FULL-WIDTH CALENDAR FIX --- */
         .fp-calendar-container {
-          padding: 0;
-          background: none;
-          box-shadow: none;
-          border: none;
-        }
-        .fp-calendar-iframe-wrapper {
-          border-radius: 0;
-          box-shadow: none;
+          padding: 2rem 1.5rem;
         }
         .fp-calendar-iframe {
-          min-height: 750px;
-          border-radius: 0;
+          min-height: 650px; /* Make iframe taller for easier use */
         }
 
+        /* --- Footer Section --- */
         .fp-footer-content {
           grid-template-columns: 1fr;
           text-align: center;
@@ -1106,7 +1123,9 @@
         }
       }
 
+      /* Specific overrides for smaller phones */
       @media (max-width: 480px) {
+        /* --- Typography & Spacing --- */
         .fp-hero-text h1 {
           font-size: 2.2rem;
         }
@@ -1123,10 +1142,12 @@
           max-width: 100%;
         }
 
+        /* --- Stats Section --- */
         .fp-stats-container {
-          grid-template-columns: 1fr;
+          grid-template-columns: 1fr; /* Stack stats on very small screens */
         }
 
+        /* --- Process Timeline Fine-tuning --- */
         .fp-process-timeline::before {
           left: 30px;
         }
@@ -1139,13 +1160,15 @@
           font-size: 1.4rem;
         }
 
+        /* --- Calendar Section --- */
         .fp-calendar-container {
-          /* This rule is no longer needed as it's handled above */
+          padding: 1.5rem;
         }
         .fp-calendar-iframe {
-          min-height: 750px;
+          min-height: 550px;
         }
 
+        /* --- Footer --- */
         .fp-footer-content {
           grid-template-columns: 1fr;
         }
@@ -1706,7 +1729,7 @@
         ).style.display = "block";
       }
 
-      // Smooth scrolling for navigation links
+      // Smooth scrolling for navigation links (Redundant if CSS html {scroll-behavior: smooth} is used, but good for cross-browser support)
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
